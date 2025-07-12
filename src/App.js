@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import SearchableList from "./components/SearchableList";
+
+const data = [
+  { name: 'Alice', email: 'alice@example.com' },
+  { name: 'Bob', email: 'bob@example.com' },
+];
+
+const headers = ['Name', 'Email'];
+
+function renderRow(item, index) {
+  return (
+    <tr key={index}>
+      <td>{item.name}</td>
+      <td>{item.email}</td>
+    </tr>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-4">
+      <SearchableList
+        data={data}
+        headers={headers}
+        searchableFields={['name', 'email']}
+        renderRow={renderRow}
+      />
     </div>
   );
 }
